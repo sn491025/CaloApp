@@ -82,6 +82,7 @@ export default function Main() {
     </View>
   )
   return (
+    
     <SafeAreaView style={styles.container}>
       <FlatList
         data={data}
@@ -89,9 +90,6 @@ export default function Main() {
         keyExtractor={item => item.id}
       />
     </SafeAreaView>
-
-
-
 
   );
 }

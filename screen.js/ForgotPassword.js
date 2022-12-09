@@ -1,15 +1,19 @@
- {/* <View style={styles.container}>  */}
+import { View, TextInput, Image } from 'react-native';
+
+import * as Yup from 'yup';
+
+// Vector-Icons
+import { FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+
+export default function ForgotPassword() {
+
+    return (
+        <View>
+            
+        </View>
+
+    );
 
 
-      {/* Login user name */}
-      {/* <Text style={styles.usernametext}>Username</Text> */}
-      {/* <TextInput style={styles.userinput} value={setText} /> */}
-
-      {/* Login user password */}
-      {/* <Text style={styles.usernametext}>Password</Text> */}
-      {/* <TextInput style={styles.userinput} /> */}
-
-      {/* login Button */}
-      {/* <Button title='Login' onPress={() => console.log(text)} /> */}
-
-    {/* </View> */}
+}

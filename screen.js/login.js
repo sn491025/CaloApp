@@ -1,4 +1,4 @@
-import {  StyleSheet, Text, View, TextInput, Image, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import {  StyleSheet, Text, View, TextInput, Image, TouchableOpacity, ScrollView, ToastAndroid } from 'react-native';
 
 // Navigation
 import { useNavigation } from '@react-navigation/native';
@@ -13,7 +13,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
 // components
-import CustomButton from '../components.js/Button';
+import { CustomButtonLogin } from '../components.js/Button';
 
 // yup object 
 const errorMesg = Yup.object({
@@ -26,8 +26,8 @@ const errorMesg = Yup.object({
 
 
 
-
 export default function Login() {
+ 
 
   // Navigation
   const Navigation = useNavigation();
@@ -47,6 +47,7 @@ export default function Login() {
 
         if (ok !== false) {
           Navigation.navigate('Main');
+            ToastAndroid.show("Welcome",);           
         } else {
           alert(JSON.stringify("The username (or) password is incorrect"));
           console.log('error');
@@ -60,11 +61,11 @@ export default function Login() {
 
   const signup = () => {
     return (
-      // <TouchableOpacity onPress={{}}>
-      <TouchableWithoutFeedback onPress={() => Navigation.navigate('Signup')}>
+      <TouchableOpacity onPress={() => Navigation.navigate('Signup')}>
+      
         <Text style={{ fontSize: 17, fontWeight: '600', }}>Sign Up</Text>
-      </TouchableWithoutFeedback>
-      // </TouchableOpacity>
+    
+      </TouchableOpacity>
     );
   }
 
@@ -79,7 +80,7 @@ export default function Login() {
         return (
           <View style={styles.container}>
            <ScrollView>
-              {/* Login-icon png */}
+              {/* Login-logo png */}
               <View style={styles.loginicon}>
                 <Image source={require('/Users/Chekhra/vsProjects/caloApp/assets/login-icon.png')} />
   
@@ -106,11 +107,11 @@ export default function Login() {
                       onBlur={handleBlur('login')}
                       defaultValue={values.data}
                       keyboardType="email-address"
-                      inlineImageLeft='/Users/Chekhra/vsProjects/caloApp/assets/mdi_password.png' />
+                      />
                   </View>
   
                   {/* username required message */}
-                  <Text>{errors.login}</Text>
+                  <Text style={styles.errorMesg}>{errors.login}</Text>
                 </View>
   
                 {/* Login user password */}
@@ -131,19 +132,20 @@ export default function Login() {
                       secureTextEntry={true} />
   
                   </View>
+                
+                  {/* username required message */}
+                  <Text style={styles.errorMesg}>{errors.pass}</Text>
   
                   {/* Forgot password */}
-                  <View style={styles.forgottext}>
+                  <TouchableOpacity style={styles.forgottext} onPress={() => Navigation.navigate('Forgot')}>
                     <Text style={{ fontSize: 17, color: '#4457DE', fontWeight: '400' }}>Forgot Password </Text>
-                  </View>
+                  </TouchableOpacity>
   
-                  {/* username required message */}
-                  <Text>{errors.pass}</Text>
   
                   {/* Custom login Button */}
                   <View style={{ marginVertical: 18 }}>
                     <TouchableOpacity onPress={handleSubmit}>
-                      <CustomButton />
+                      <CustomButtonLogin />
                     </TouchableOpacity>
   
                     {/* for sign up */}
@@ -182,6 +184,7 @@ const styles = StyleSheet.create({
   userinput: {
     paddingLeft: 24,
     fontSize: 20,
+    width: 263
 
   },
   inputIcon: {
@@ -202,6 +205,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
     alignItems: 'flex-end',
   },
+  errorMesg: {
+    color:'red'
+  }
 
 
 
